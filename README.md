@@ -6,9 +6,9 @@ Tres visualizaciones interactivas sobre la calidad del aire en Barcelona, una po
 
 | Técnica | Pregunta | Página | Código |
 | --- | --- | --- | --- |
-| Small multiples | ¿Cuánto NO₂ se respira al día en Barcelona? | [Multiple_small.html](https://ikss-dsi.github.io/pec2-dataviz/Multiple_small.html) | [Multiple_small.py](Multiple_small.py) |
-| Icon chart | ¿Respira Barcelona el aire que recomienda la OMS? | [icon_chart.html](https://ikss-dsi.github.io/pec2-dataviz/icon_chart.html) | [icon_chart.py](icon_chart.py) |
-| Violin plot | ¿Dónde hay más ozono en Barcelona? | [violin-plot.html](https://ikss-dsi.github.io/pec2-dataviz/violin-plot.html) | [violin-plot.py](violin-plot.py) |
+| Small multiples | ¿Cuánto NO₂ se respira al día en Barcelona? | [Multiple_small.html](https://ikss-dsi.github.io/pec2-dataviz/small-multiples/Multiple_small.html) | [Multiple_small.py](Multiple_small.py) |
+| Icon chart | ¿Respira Barcelona el aire que recomienda la OMS? | [icon_chart.html](https://ikss-dsi.github.io/pec2-dataviz/icon-chart/icon_chart.html) | [icon_chart.py](icon_chart.py) |
+| Violin plot | ¿Dónde hay más ozono en Barcelona? | [violin-plot.html](https://ikss-dsi.github.io/pec2-dataviz/violin-plot/violin-plot.html) | [violin-plot.py](violin-plot.py) |
 
 ## Datos
 
@@ -52,6 +52,3 @@ Cada script guarda su página `.html` junto a él.
 
 Iker Serrato · Visualización de datos, UOC.
 =======
-# pec2-dataviz
-Práctica 2 de la matería Vizualización de datos
->>>>>>> 6aeb4180bbe951d6b92a28c37e8578bcd335b421
