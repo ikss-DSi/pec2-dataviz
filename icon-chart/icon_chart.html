@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aire de Barcelona y OMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: #0d1b2a; font-family: 'Noto Sans', sans-serif; }
+  main { max-width: 1300px; margin: 0 auto; padding: 28px 16px 40px; }
+  h1 { font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-size: clamp(1.6rem, 3.2vw, 2.4rem); margin: 0 0 6px; }
+  .sub { font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-weight: 700; font-size: clamp(1rem, 1.6vw, 1.25rem); color: #33507a; margin: 0 0 6px; }
+  .des { font-size: .9rem; color: #6f8bb0; margin: 0 0 18px; }
+  .des b { color: #33507a; }
+  .barra { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-bottom: 14px;
+            font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-weight: 700; color: #0d1b2a; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 8px 14px; border: 2px solid #33507a; }
+  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .leyenda svg { width: 16px; height: 22px; }
+  .orden button { font: 700 .95rem 'Source Sans 3', 'Source Sans Pro', sans-serif; color: #33507a; background: #fff; border: 2px solid #33507a;
+                   padding: 4px 10px; cursor: pointer; }
+  .orden button[aria-pressed="true"] { background: #33507a; color: #fff; }
+  .orden button:focus-visible { outline: 3px solid #33507a; outline-offset: 2px; }
+  .tabla { display: grid; grid-template-columns: minmax(150px, 1.1fr) repeat(3, minmax(0, 1.3fr)); }
+  .cab { font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-weight: 700; color: #33507a; padding: 6px 8px 10px; border-bottom: 2px solid #33507a;
+          line-height: 1.25; }
+  .cab small { display: block; font-weight: 400; color: #6f8bb0; font-family: 'Noto Sans', sans-serif; font-size: .78rem; }
+  .fila { display: contents; }
+  .fila > div { padding: 10px 8px; border-bottom: 1px solid #e3e8ef; display: flex; align-items: center; min-width: 0; }
+  .fila:hover > div { background: #f4f7fb; }
+  .est strong { display: block; font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-size: 1.05rem; }
+  .est span { display: block; font-size: .8rem; color: #33507a; }
+  .est { flex-direction: column; align-items: flex-start !important; justify-content: center; }
+  .iconos { display: flex; flex-wrap: wrap; gap: 4px; }
+  .iconos svg { width: 24px; height: 35px; flex: none; }
+  .valor { font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-weight: 700; font-size: 1.05rem; margin-left: 12px; white-space: nowrap; }
+  .valor small { display: block; font-weight: 400; font-size: .75rem; color: #6f8bb0; }
+  details { margin-top: 20px; font-size: .85rem; }
+  summary { cursor: pointer; font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-weight: 700; color: #33507a; }
+  table { border-collapse: collapse; margin-top: 8px; }
+  th, td { padding: 4px 10px; border-bottom: 1px solid #e3e8ef; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  footer { font-size: .78rem; color: #6f8bb0; line-height: 1.6; margin-top: 18px; }
+  footer a { color: #33507a; }
+  @media (max-width: 760px) {
+    .tabla { grid-template-columns: 1fr; }
+    .cab:not(:first-child) { display: none; }
+    .fila > div { border-bottom: 0; padding: 4px 8px; }
+    .fila > .est { border-top: 1px solid #c5cfdb; padding-top: 12px; }
+    .fila > div[data-etq]::before { content: attr(data-etq); width: 3.2em; flex: none; font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+                                     font-weight: 700; color: #33507a; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>¿Respira Barcelona el aire que recomienda la OMS?</h1>
+  <p class="sub">Donde hay menos NO₂ hay más ozono: ninguna estación cumple a la vez las dos guías de la OMS</p>
+  <p class="des">Cada icono equivale al <b>valor guía de la OMS</b>: lo que pasa del primer icono es <b>exceso</b>.
+  Para el NO, que la OMS no regula, cada icono son 5 µg/m³.</p>
+  <div class="barra">
+    <div class="leyenda" aria-label="Leyenda">
+      <span><svg viewBox="0 0 18 26"><use href="#persona" fill="#1f5fbf"/></svg>Dentro de la guía OMS</span>
+      <span><svg viewBox="0 0 18 26"><use href="#persona" fill="#e07b00"/></svg>Exceso sobre la guía</span>
+      <span><svg viewBox="0 0 18 26"><use href="#persona" fill="#8a99ad"/></svg>NO: 5 µg/m³ (sin guía)</span>
+    </div>
+    <div class="orden" role="group" aria-label="Ordenar estaciones">Ordenar por:
+      <button type="button" data-k="no2" aria-pressed="true">NO₂</button>
+      <button type="button" data-k="o3" aria-pressed="false">O₃</button>
+      <button type="button" data-k="no" aria-pressed="false">NO</button>
+    </div>
+  </div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="persona" viewBox="0 0 18 26"><circle cx="9" cy="5" r="4.5"/>
+      <path d="M2 26V15a7 7 0 0 1 14 0v11z"/></symbol>
+  </svg>
+  <div class="tabla" id="tabla">
+    <div class="cab">Estación<small>tipo y años con datos</small></div>
+    <div class="cab">NO₂ · veces la guía<small>guía OMS: 10 µg/m³ de media anual</small></div>
+    <div class="cab">O₃ · veces la guía<small>guía OMS: 60 µg/m³ en temporada alta</small></div>
+    <div class="cab">NO · µg/m³<small>sin guía OMS; 1 icono = 5 µg/m³</small></div>
+  </div>
+  <details>
+    <summary>Ver los datos en una tabla</summary>
+    <table>
+      <thead><tr><th>Estación</th><th>NO₂ (µg/m³)</th><th>Veces guía NO₂</th><th>O₃ temporada alta (µg/m³)</th>
+      <th>Meses</th><th>Veces guía O₃</th><th>NO (µg/m³)</th></tr></thead>
+      <tbody><tr><td>Eixample*</td><td>34,6</td><td>3,5</td><td>71,5</td><td>abr-sep</td><td>1,2</td><td>14,1</td></tr><tr><td>Navas*</td><td>28,1</td><td>2,8</td><td>83,1</td><td>may-oct</td><td>1,4</td><td>9,1</td></tr><tr><td>Gràcia</td><td>27,6</td><td>2,8</td><td>81,0</td><td>mar-ago</td><td>1,4</td><td>9,5</td></tr><tr><td>Ciutadella</td><td>24,6</td><td>2,5</td><td>78,9</td><td>mar-ago</td><td>1,3</td><td>5,7</td></tr><tr><td>Vall Hebron</td><td>19,2</td><td>1,9</td><td>94,7</td><td>abr-sep</td><td>1,6</td><td>3,7</td></tr><tr><td>Palau Reial</td><td>16,2</td><td>1,6</td><td>91,9</td><td>abr-sep</td><td>1,5</td><td>3,1</td></tr><tr><td>Observatori Fabra</td><td>7,9</td><td>0,8</td><td>97,0</td><td>abr-sep</td><td>1,6</td><td>1,6</td></tr></tbody>
+    </table>
+  </details>
+  <footer>* Eixample (solo 2023) y Navas (solo 2026) tienen menos de un año de datos: su temporada alta de O₃ es una estimación con los meses disponibles.<br>NO₂ y NO: media de todas las horas del periodo 2023-2026, no de un año natural. O₃: media de los máximos diarios de la media móvil de 8 h en los 6 meses consecutivos con más ozono, calculada a partir de los datos horarios.<br>Guías: OMS (2021), <a href="https://www.who.int/publications/i/item/9789240034228">WHO global air quality guidelines</a>: NO₂ media anual 10 µg/m³; O₃ temporada alta 60 µg/m³. La OMS no fija valor guía para el NO.<br>Datos: Ajuntament de Barcelona, Open Data BCN, calidad del aire (dataset preparado por la UOC, M2.891).</footer>
+</main>
+<script>
+  const filas = [{"est": "Eixample", "ast": "*", "tipo": "tráfico", "anios": "2023", "no2": 34.6, "o3": 71.5, "meses": "abr-sep", "no": 14.1}, {"est": "Navas", "ast": "*", "tipo": "fondo urbano", "anios": "2026", "no2": 28.1, "o3": 83.1, "meses": "may-oct", "no": 9.1}, {"est": "Gràcia", "ast": "", "tipo": "tráfico", "anios": "2023-2026", "no2": 27.6, "o3": 81.0, "meses": "mar-ago", "no": 9.5}, {"est": "Ciutadella", "ast": "", "tipo": "fondo urbano", "anios": "2023-2026", "no2": 24.6, "o3": 78.9, "meses": "mar-ago", "no": 5.7}, {"est": "Vall Hebron", "ast": "", "tipo": "fondo urbano", "anios": "2023-2026", "no2": 19.2, "o3": 94.7, "meses": "abr-sep", "no": 3.7}, {"est": "Palau Reial", "ast": "", "tipo": "fondo urbano", "anios": "2023-2026", "no2": 16.2, "o3": 91.9, "meses": "abr-sep", "no": 3.1}, {"est": "Observatori Fabra", "ast": "", "tipo": "suburbana", "anios": "2023-2026", "no2": 7.9, "o3": 97.0, "meses": "abr-sep", "no": 1.6}];
+  const G = {no2: 10, o3: 60}, U_NO = 5;
+  const C = {ok: '#1f5fbf', ex: '#e07b00', no: '#8a99ad'};
+  const coma = x => x.toFixed(1).replace('.', ',');
+
+  // Un icono por unidad; el último se recorta según la fracción
+  function iconos(valor, colorDe) {
+    let html = '';
+    for (let i = 0; i < Math.ceil(valor - 1e-9); i++) {
+      const f = Math.min(1, valor - i), id = 'c' + Math.random().toString(36).slice(2);
+      html += `<svg viewBox="0 0 18 26" aria-hidden="true"><defs><clipPath id="${id}"><rect width="${18 * f}" height="26"/></clipPath></defs>` +
+              `<use href="#persona" fill="#e3e8ef"/><use href="#persona" fill="${colorDe(i)}" clip-path="url(#${id})"/></svg>`;
+    }
+    return html;
+  }
+  const guia = i => i < 1 ? C.ok : C.ex;
+
+  function pintar(k) {
+    const t = document.getElementById('tabla');
+    t.querySelectorAll('.fila').forEach(n => n.remove());
+    [...filas].sort((a, b) => b[k] / (G[k] || 1) - a[k] / (G[k] || 1)).forEach(f => {
+      const v2 = f.no2 / G.no2, v3 = f.o3 / G.o3, vn = f.no / U_NO;
+      t.insertAdjacentHTML('beforeend', `<div class="fila">
+        <div class="est"><strong>${f.est}${f.ast}</strong><span>(${f.tipo}, ${f.anios})</span></div>
+        <div data-etq="NO₂" title="NO₂: ${coma(f.no2)} µg/m³ = ${coma(v2)} veces la guía OMS">
+          <div class="iconos" role="img" aria-label="NO₂ ${coma(v2)} veces la guía">${iconos(v2, guia)}</div>
+          <div class="valor">${coma(v2)}×<small>${coma(f.no2)} µg/m³</small></div></div>
+        <div data-etq="O₃" title="O₃ temporada alta (${f.meses}): ${coma(f.o3)} µg/m³ = ${coma(v3)} veces la guía OMS">
+          <div class="iconos" role="img" aria-label="O₃ ${coma(v3)} veces la guía">${iconos(v3, guia)}</div>
+          <div class="valor">${coma(v3)}×<small>${coma(f.o3)} µg/m³</small></div></div>
+        <div data-etq="NO" title="NO: ${coma(f.no)} µg/m³ (la OMS no fija guía)">
+          <div class="iconos" role="img" aria-label="NO ${coma(f.no)} microgramos">${iconos(vn, () => C.no)}</div>
+          <div class="valor">${coma(f.no)}<small>µg/m³</small></div></div>
+      </div>`);
+    });
+  }
+  document.querySelectorAll('.orden button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.orden button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    pintar(b.dataset.k);
+  }));
+  pintar('no2');
+</script>
+</body>
+</html>
