@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PEC 2 · Visualización de datos: calidad del aire en Barcelona
 
 Tres visualizaciones interactivas sobre la calidad del aire en Barcelona, una por técnica asignada en la PEC 2 de la asignatura *Visualización de datos* (Máster universitario en Ciencia de datos, UOC, semestre 2026-1).
@@ -51,3 +52,7 @@ Cada script guarda su página `.html` junto a él.
 ## Autor
 
 Iker Serrato · Visualización de datos, UOC.
+=======
+# pec2-dataviz
+Práctica 2 de la matería Vizualización de datos
+>>>>>>> 6aeb4180bbe951d6b92a28c37e8578bcd335b421
