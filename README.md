@@ -25,9 +25,9 @@ El archivo de datos no se incluye en el repositorio. Las páginas HTML son autó
 
 ## Técnicas
 
-- **Small multiples:** perfil diario medio de NO₂ por hora en cada estación, día laborable frente a fin de semana, con la misma escala en todos los paneles y los promedios de las 7 estaciones como referencia. Botones para mostrar u ocultar series y deslizador de horario común.
-- **Icon chart:** cada icono equivale al valor guía de la OMS (NO₂: 10 µg/m³ de media anual; O₃: 60 µg/m³ en temporada alta). El primero, en azul, es lo recomendado; los naranjas son exceso. El NO, sin guía de la OMS, se muestra en gris (1 icono = 5 µg/m³). Se puede reordenar por contaminante e incluye una tabla de datos accesible.
-- **Violin plot:** distribución horaria de O₃ por estación, con las urbanas separadas de la suburbana. La densidad (kernel gaussiano) se recalcula en el navegador para el horario elegido, de modo que el bulto de ozono bajo nocturno aparece y desaparece.
+- **Small multiples:** Perfil diario medio de **NO₂** por hora en cada estación, día laborable frente a fin de semana, con la misma escala en todos los paneles y los promedios de las 7 estaciones como referencia. Botones para mostrar u ocultar series y deslizador de horario común.
+- **Icon chart:** cada icono equivale al valor guía de la **OMS (NO₂: 10 µg/m³ de media anual; O₃: 60 µg/m³ en temporada alta)**. El primero, en azul, es lo recomendado; los naranjas son exceso. El NO, sin guía de la OMS, se muestra en gris **(1 icono = 5 µg/m³)**. Se puede reordenar por contaminante e incluye una tabla de datos accesible.
+- **Violin plot:** distribución horaria de **O₃** por estación, con las urbanas separadas de la suburbana. La densidad estimada **(KDM)** se recalcula en el navegador para el horario elegido, de modo que el bulto de ozono bajo nocturno aparece y desaparece.
 
 ## Cómo regenerar las páginas
 
