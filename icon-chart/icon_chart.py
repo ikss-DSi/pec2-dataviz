@@ -159,11 +159,11 @@ pagina = f'''<!doctype html>
   <details>
     <summary>Ver los datos en una tabla</summary>
     <table>
-      <thead><tr><th>Estación</th><th>NO₂ (µg/m³)</th><th>Veces guía NO₂</th><th>O₃ temporada alta (µg/m³)</th>
-      <th>Meses</th><th>Veces guía O₃</th><th>NO (µg/m³)</th></tr></thead>
+      <thead><tr><th>Estación</th><th>NO₂ (µg/m³)</th><th>Veces guía NO₂</th><th>Meses</th>
+      <th>O₃ temporada alta (µg/m³)</th><th>Veces guía O₃</th><th>NO (µg/m³)</th></tr></thead>
       <tbody>{''.join(
         f"<tr><td>{f['est']}{f['ast']}</td><td>{fmt(f['no2'])}</td><td>{fmt(f['no2'] / GUIA_NO2)}</td>"
-        f"<td>{fmt(f['o3'])}</td><td>{f['meses']}</td><td>{fmt(f['o3'] / GUIA_O3)}</td><td>{fmt(f['no'])}</td></tr>"
+        f"<td>{f['meses']}</td><td>{fmt(f['o3'])}</td><td>{fmt(f['o3'] / GUIA_O3)}</td><td>{fmt(f['no'])}</td></tr>"
         for f in filas)}</tbody>
     </table>
   </details>
